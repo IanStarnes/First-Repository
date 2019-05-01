@@ -125,7 +125,7 @@ epsilon = (slope/b).to((u.m ** 2)/u.g)
 epsilon
 def conc_from_volt(volt):
   temp = -np.log((volt-Dark_Volts)/(Blank_Volts-Dark_Volts))
-  return temp/slope + intercept
+  return (temp - intercept)/slope
 
 plt.plot(Sample_C,slope*Sample_C, 'o', Sample_C,slope*Sample_C, '-');
 plt.ylabel(r'Absorbance (unitless)')
@@ -137,6 +137,10 @@ absorbance_unknown=-np.log((Unknown_Volts-Dark_Volts)/(Blank_Volts-Dark_Volts))
 absorbance_unknown
 conc_unknown=(absorbance_unknown-intercept)/slope
 conc_unknown
+
+#check
+conc_unknown2 = conc_from_volt(Unknown_Volts)
+conc_unknown2
 ```
 **7. The slope for this dataset is 0.110 L/mg.**
 
