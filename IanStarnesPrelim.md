@@ -57,8 +57,11 @@ hrt = (volume_column / flow_rate).to(u.s)
 hrt
 ```
 **1. The mass of sand that must be added to the column is 161 grams.**
+
 **2. The flow rate required is 0.507 mL/s.**
+
 **3. The pump must work at 15.2 rev/min.**
+
 **4. The hydraulic residence time is 200 sec.**
 
 
@@ -136,14 +139,18 @@ conc_unknown=(absorbance_unknown-intercept)/slope
 conc_unknown
 ```
 **7. The slope for this dataset is 0.110 L/mg.**
+
 **8. Epsilon is 5.77 m^{2}/g**
+
 <p align="center"> <img src="https://raw.githubusercontent.com/IanStarnes/First-Repository/master/Ian23.png" heights=110 width=427> </p>
 
 <p align="center">
 <b>Question 10</b>: Plot of the calibration data AND the calibration line showing absorbance as a function of concentration.
 </p>
 
+
 **11. The absorbance of the unknown solution is 1.23 (unitless).**
+
 **12. The concentration of the unknown solution is 12.4 mg/L.**
 
 ## Multiple Choice
@@ -162,6 +169,8 @@ Use *asterisks* to italicize the answers that you select.
 
     *E) The tank of red dye is nearly empty and the pump is beginning to pull air into the end of the inlet tube.*
 
+**The italics are not that clear on the preview so my answers are B and E.**
+
 14. ProCoDA is reporting a concentration of 10 mg/L of red dye with a calibrated photometer when students are pumping reverse osmosis water through the photometer. What might be causing the high readings? Which of the following explanations is (are) consistent with the observed results?
 
      *A) An air bubble is caught in the optical path of the photometer*
@@ -169,3 +178,5 @@ Use *asterisks* to italicize the answers that you select.
      *B) The photometer LED is turned off*
 
      C) The photometer is installed backwards
+
+**The italics are not that clear on the preview so my answers are A and B.**
