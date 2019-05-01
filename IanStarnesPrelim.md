@@ -72,6 +72,8 @@ A 50 mL water sample that contains some carbonates is titrated with 0.05 N HCl. 
 volume_sample = 50 * u.mL
 volume_titrant = 2 * u.mL
 titration_normality = 0.05 * u.eq/u.L
+
+#5
 ANC = (volume_titrant * titration_normality / volume_sample).to(u.meq/u.L)
 ANC
 ```
@@ -110,6 +112,8 @@ Sample_C = np.array([0, 10, 20, 30, 40, 50])* u.mg/u.L
 Sample_Volts = np.array([3.497270,0.554016,-0.611595,-1.045119,-1.252709,-1.283894])* u.volts
 x=Sample_C
 y=-np.log((Sample_Volts-Dark_Volts)/(Blank_Volts-Dark_Volts))
+
+#6
 slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
 slope = slope * u.L/u.mg
 slope
@@ -122,12 +126,25 @@ def conc_from_volt(volt):
 
 plt.plot(Sample_C,slope*Sample_C, 'o', Sample_C,slope*Sample_C, '-');
 plt.ylabel(r'Absorbance (unitless)')
-plt.xlabel(r'Concentration (mg/L)');
+plt.xlabel(r'Concentration (mg/L)')
+plt.legend(('Calibration Data','Calibration Line'), loc=2)
 plt.savefig('Ian23')
 plt.show()
+absorbance_unknown=-np.log((Unknown_Volts-Dark_Volts)/(Blank_Volts-Dark_Volts))
+absorbance_unknown
+conc_unknown=(absorbance_unknown-intercept)/slope
+conc_unknown
 ```
 **7. The slope for this dataset is 0.110 L/mg.**
 **8. Epsilon is 5.77 m^{2}/g**
+<p align="center"> <img src="https://raw.githubusercontent.com/IanStarnes/First-Repository/master/Ian23.png" heights=110 width=427> </p>
+
+<p align="center">
+<b>Question 10</b>: Plot of the calibration data AND the calibration line showing absorbance as a function of concentration.
+</p>
+
+**11. The absorbance of the unknown solution is 1.23 (unitless).**
+**12. The concentration of the unknown solution is 12.4 mg/L.**
 
 ## Multiple Choice
 
@@ -137,18 +154,18 @@ Use *asterisks* to italicize the answers that you select.
 
     A) Sand column fittings at the top of the column are leaking.
 
-    B) Sand column fittings at the bottom of the column are leaking.
+    *B) Sand column fittings at the bottom of the column are leaking.*
 
     C) Instant tube fitting (push to connect fitting) between the tank and the pump is leaking.
 
     D) Instant tube fitting between the pump and the sand column is leaking.
 
-    E) The tank of red dye is nearly empty and the pump is beginning to pull air into the end of the inlet tube.
+    *E) The tank of red dye is nearly empty and the pump is beginning to pull air into the end of the inlet tube.*
 
 14. ProCoDA is reporting a concentration of 10 mg/L of red dye with a calibrated photometer when students are pumping reverse osmosis water through the photometer. What might be causing the high readings? Which of the following explanations is (are) consistent with the observed results?
 
-     A) An air bubble is caught in the optical path of the photometer
+     *A) An air bubble is caught in the optical path of the photometer*
 
-     B) The photometer LED is turned off
+     *B) The photometer LED is turned off*
 
      C) The photometer is installed backwards
