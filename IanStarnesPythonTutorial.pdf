@@ -1,0 +1,56 @@
+<p>```python<br>
+from aguaclara.core.units import unit_registry as u<br>
+import numpy as np<br>
+import matplotlib.pyplot as plt<br>
+import pandas as pd<br>
+from scipy import stats</p>
+<h1 id="the-data-file-path-is-the-raw-data-url-on-github.-happily-python-can-read-directly-from-a-web-page.">The data file path is the raw data url on github. Happily python can read directly from a web page.</h1>
+<p>data_file_path = "<a href="https://github.com/IanStarnes/First-Repository/second.md" class="uri">https://github.com/IanStarnes/First-Repository/second.md</a>"</p>
+<h1 id="now-we-create-a-pandas-dataframe-with-the-data-in-the-file">Now we create a pandas dataframe with the data in the file</h1>
+<p>df = pd.read_csv('/Users/Ian/Documents/Heights_and_weights.csv')<br>
+#if you want to see what is in the dataframe you can print it!<br>
+print(df)</p>
+<h1 id="the-column-headers-can-be-access-by-using-the-list-command">The column headers can be access by using the list command</h1>
+<p>list(df)<br>
+columns = df.columns<br>
+print(columns)<br>
+#Below are three equally fine methods of extracting a column of data from the pandas dataframe.</p>
+<p># 1) We can select a column by using the column header. Here we use the column header by selecting one array element from the list command.<br>
+x = df[list(df)[0]].values * u.cm<br>
+x<br>
+# 2) We can use the loc command to select all of the rows (: command) and the column with the label given by list(df)[0].<br>
+x = df.loc[:, list(df)[0]].values * u.cm<br>
+x<br>
+# 3) We can use the iloc command and select all of the rows in column 0.<br>
+x = df.iloc[:,0].values * u.cm<br>
+x<br>
+#The iloc method is simple and efficient, so I'll use that to get the y values.<br>
+y = df.iloc[:,1].values * u.kg<br>
+y<br>
+# We will use the stats package to do the linear regression.<br>
+# It is important to note that the units are stripped from the x and y arrays when processed by the stats package.<br>
+slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)</p>
+<p>#We can add the units to intercept by giving it the same units as the y values.<br>
+intercept = intercept * y.units<br>
+# Note that slope is dimensionless for this case, but not in general!<br>
+# For the general case we can attach the correct units to slope.<br>
+slope = slope * y.units/x.units</p>
+<p># Now create a figure and plot the data and the line from the linear regression.<br>
+fig, ax = plt.subplots()<br>
+# plot the data as red circles<br>
+ax.plot(x, y, 'ro', )</p>
+<p>#plot the linear regression as a black line<br>
+ax.plot(x, slope * x + intercept, 'k-', )</p>
+<p># Add axis labels using the column labels from the dataframe<br>
+ax.set(xlabel=list(df)[0])<br>
+ax.set(ylabel=list(df)[1])<br>
+ax.legend(['Measured', 'Linear regression'])<br>
+ax.grid(True)</p>
+<p># Here I save the file to my local harddrive. You will need to change this to work on your computer.<br>
+# We don't need the file type (png) here.<br>
+plt.savefig('/Users/Ian/Documents/linear.jpeg')<br>
+plt.show()<br>
+<img src="/Users/Ian/Documents/linear.jpeg" alt="photo"></p>
+<p>$$slope * height + intercept = weight$$<br>
+$$a^2 + b^2 = c^2$$</p>
+<p>I wasn't able to find out how to use latex for writing the equation of the regression.</p>
